@@ -148,12 +148,15 @@ public class ApplicationContext {
         String className = beanDefinition.getBeanClassName();
         Object instance = null;
         try {
-            Class<?> clazz = Class.forName(className);
-            
-            // 默认类名首字母小写
-            instance = clazz.newInstance();
-            this.factoryBeanObjectCache.put(beanName, instance);
-            
+            if (this.factoryBeanObjectCache.containsKey(beanName)){
+                instance = this.factoryBeanInstanceCache.get(beanName);
+            }else {
+                Class<?> clazz = Class.forName(className);
+
+                // 默认类名首字母小写
+                instance = clazz.newInstance();
+                this.factoryBeanObjectCache.put(beanName, instance);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
