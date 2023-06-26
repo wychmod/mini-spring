@@ -6,6 +6,7 @@ import com.wychmod.spring.framework.annotation.Autowired;
 import com.wychmod.spring.framework.annotation.Controller;
 import com.wychmod.spring.framework.annotation.RequestMapping;
 import com.wychmod.spring.framework.annotation.RequestParam;
+import com.wychmod.spring.framework.webmvc.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,41 +27,42 @@ public class MyAction {
     @Autowired
     IModifyService modifyService;
 
-    private void out(HttpServletResponse resp, String str){
+    private ModelAndView out(HttpServletResponse resp, String str){
         try {
             resp.getWriter().write(str);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     @RequestMapping("/query.json")
-    public void query(HttpServletRequest request, HttpServletResponse response,
+    public ModelAndView query(HttpServletRequest request, HttpServletResponse response,
                       @RequestParam("name") String name){
         String result = queryService.query(name);
-        out(response,result);
+        return out(response,result);
     }
 
     @RequestMapping("/add*.json")
-    public void add(HttpServletRequest request,HttpServletResponse response,
+    public ModelAndView add(HttpServletRequest request,HttpServletResponse response,
                     @RequestParam("name") String name,@RequestParam("addr") String addr){
         String result = modifyService.add(name,addr);
-        out(response,result);
+        return out(response,result);
     }
 
     @RequestMapping("/remove.json")
-    public void remove(HttpServletRequest request,HttpServletResponse response,
+    public ModelAndView remove(HttpServletRequest request,HttpServletResponse response,
                        @RequestParam("id") Integer id){
         String result = modifyService.remove(id);
-        out(response,result);
+        return out(response,result);
     }
 
     @RequestMapping("/edit.json")
-    public void edit(HttpServletRequest request,HttpServletResponse response,
+    public ModelAndView edit(HttpServletRequest request,HttpServletResponse response,
                      @RequestParam("id") Integer id,
                      @RequestParam("name") String name){
         String result = modifyService.edit(id,name);
-        out(response,result);
+        return out(response,result);
     }
     
 }
