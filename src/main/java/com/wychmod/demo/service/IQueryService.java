@@ -10,5 +10,5 @@ public interface IQueryService {
 	/**
 	 * 查询
 	 */
-	String query(String name);
+	public String query(String name);
 }

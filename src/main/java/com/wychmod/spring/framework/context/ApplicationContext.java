@@ -11,6 +11,7 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * @description: 职责：完成bean的创建和DI（依赖注入）的功能，即IOC的功能
@@ -149,7 +150,7 @@ public class ApplicationContext {
         Object instance = null;
         try {
             if (this.factoryBeanObjectCache.containsKey(beanName)){
-                instance = this.factoryBeanInstanceCache.get(beanName);
+                instance = this.factoryBeanObjectCache.get(beanName);
             }else {
                 Class<?> clazz = Class.forName(className);
 
@@ -165,5 +166,17 @@ public class ApplicationContext {
 
     public Object getBean(Class<?> beanClass) {
         return getBean(beanClass.getName());
+    }
+
+    public int getBeanDefinitionCount() {
+        return this.beanDefinitionMap.size();
+    }
+
+    public String[] getBeanDefinitionNames() {
+        return this.beanDefinitionMap.keySet().toArray(new String[this.beanDefinitionMap.size()]);
+    }
+
+    public Properties getConfig() {
+        return this.reader.getConfig();
     }
 }

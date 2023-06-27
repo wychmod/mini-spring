@@ -36,6 +36,10 @@ public class BeanDefinitionReader {
         doScanner(contextConfig.getProperty("scanPackage"));
     }
 
+    public Properties getConfig() {
+        return this.contextConfig;
+    }
+
     private void doScanner(String scanPackage) {
         // 找到资源的完整路径
         URL url = this.getClass().getClassLoader().getResource("/" + scanPackage.replaceAll("\\.", "/"));
@@ -58,7 +62,7 @@ public class BeanDefinitionReader {
     }
 
     private void doLoadConfig(String contextConfigLocation) {
-        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(contextConfigLocation);
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(contextConfigLocation.replaceAll("classpath:",""));
         try {
             contextConfig.load(inputStream);
         } catch (IOException e) {
@@ -80,6 +84,7 @@ public class BeanDefinitionReader {
         try {
             for (String className : regitryBeanClasses) {
                 Class<?> beanClass = Class.forName(className);
+                if(beanClass.isInterface()){continue;}
                 // 保存类对应的ClassName（全类名）和 beanName
                 // 1. 默认是类名首字母小写
                 result.add(doCreateBeanDefinition(toLowerFirstCase(beanClass.getSimpleName()), beanClass.getName()));
