@@ -3,6 +3,9 @@ package com.wychmod.spring.framework.context;
 import com.wychmod.spring.framework.annotation.Autowired;
 import com.wychmod.spring.framework.annotation.Controller;
 import com.wychmod.spring.framework.annotation.Service;
+import com.wychmod.spring.framework.aop.JdkDynamicAopProxy;
+import com.wychmod.spring.framework.aop.config.AopConfig;
+import com.wychmod.spring.framework.aop.support.AdvisedSupport;
 import com.wychmod.spring.framework.beans.BeanWrapper;
 import com.wychmod.spring.framework.beans.config.BeanDefinition;
 import com.wychmod.spring.framework.beans.support.BeanDefinitionReader;
@@ -156,12 +159,37 @@ public class ApplicationContext {
 
                 // 默认类名首字母小写
                 instance = clazz.newInstance();
+
+                //==================AOP开始=========================
+                // 判断是否满足条件，满足则返回Proxy对象
+                // 1. 加载Aop配置文件
+                AdvisedSupport config = instantionAopConfig(beanDefinition);
+                config.setTarget(instance);
+                config.setTargetClass(clazz);
+
+                // 判断规则，要不要生成代理类，如果要就覆盖原生对象，不要则不处理
+                if (config.pointCutMath()){
+                    instance = new JdkDynamicAopProxy(config).getProxy();
+                }
+                //===================AOP结束========================
+
                 this.factoryBeanObjectCache.put(beanName, instance);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return instance;
+    }
+
+    private AdvisedSupport instantionAopConfig(BeanDefinition beanDefinition) {
+        AopConfig config = new AopConfig();
+        config.setPointCut(this.reader.getConfig().getProperty("pointCut"));
+        config.setAspectClass(this.reader.getConfig().getProperty("aspectClass"));
+        config.setAspectBefore(this.reader.getConfig().getProperty("aspectBefore"));
+        config.setAspectAfter(this.reader.getConfig().getProperty("aspectAfter"));
+        config.setAspectAfterThrow(this.reader.getConfig().getProperty("aspectAfterThrow"));
+        config.setAspectAfterThrowingName(this.reader.getConfig().getProperty("aspectAfterThrowingName"));
+        return new AdvisedSupport(config);
     }
 
     public Object getBean(Class<?> beanClass) {

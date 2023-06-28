@@ -9,8 +9,9 @@ import com.wychmod.demo.service.IModifyService;
  */
 public class ModifyService implements IModifyService {
     @Override
-    public String add(String name, String addr) {
-        return "modifyService add,name=" + name + ",addr=" + addr;
+    public String add(String name, String addr) throws Exception {
+        throw new Exception("测试抛出来的异常");
+//        return "modifyService add,name=" + name + ",addr=" + addr;
     }
 
     @Override
