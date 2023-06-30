@@ -9,15 +9,6 @@ import java.lang.reflect.Method;
  * @author: wychmod
  * @date: 2023/6/28
  */
-@Data
-public class Advice {
-    private Object aspect;
-    private Method adviceMethod;
-    private String throwName;
-
-    public Advice(Object aspect, Method adviceMethod) {
-        this.aspect = aspect;
-        this.adviceMethod = adviceMethod;
-    }
+public interface Advice {
 
 }

@@ -1,11 +1,16 @@
 package com.wychmod.spring.framework.aop.support;
 
 import com.wychmod.spring.framework.aop.aspect.Advice;
+import com.wychmod.spring.framework.aop.aspect.AfterReturningAdviceInterceptor;
+import com.wychmod.spring.framework.aop.aspect.AspectJAfterThrowingAdvice;
+import com.wychmod.spring.framework.aop.aspect.MethodBeforeAdviceInterceptor;
 import com.wychmod.spring.framework.aop.config.AopConfig;
 
 import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,8 +26,9 @@ public class AdvisedSupport {
     private Object target;
     private Class<?> targetClass;
     private Pattern pointCutClassPattern;
-    // 存储每个方法对应的各个切面
-    private Map<Method, Map<String, Advice>> methodCache;
+    // 存储每个方法对应的各个切面,底层是list实现，返回一个list链
+//    private Map<Method, Map<String, Advice>> methodCache;
+    private Map<Method, List<Object>> methodCache;
 
     public AdvisedSupport(AopConfig config) {
         this.config = config;
@@ -63,7 +69,7 @@ public class AdvisedSupport {
         this.pointCutClassPattern = Pattern.compile("class " + pointCutForClassRegex.substring(pointCutForClassRegex.lastIndexOf(" ") + 1));
 
         // 享元的共享池
-        methodCache = new HashMap<Method, Map<String, Advice>>();
+        methodCache = new HashMap<Method, List<Object>>();
         // 保存专门匹配方法的正则
         Pattern pointCutPattern = Pattern.compile(pointCut);
 
@@ -86,18 +92,19 @@ public class AdvisedSupport {
                 // 正则匹配成功，放入各切面与Advice的映射，Advice(切面类实例， 切面类的方法)
                 Matcher matcher = pointCutPattern.matcher(methodString);
                 if (matcher.matches()){
-                    Map<String,Advice> advices = new HashMap<String, Advice>();
+//                    Map<String,Advice> advices = new HashMap<String, Advice>();
+                    List<Object> advices = new LinkedList<Object>();
 
                     if(!(null == config.getAspectBefore() || "".equals(config.getAspectBefore()))){
-                        advices.put("before",new Advice(aspectClass.newInstance(),aspectMethods.get(config.getAspectBefore())));
+                        advices.add(new MethodBeforeAdviceInterceptor(aspectMethods.get(config.getAspectBefore()), aspectClass.newInstance()));
                     }
                     if(!(null == config.getAspectAfter() || "".equals(config.getAspectAfter()))){
-                        advices.put("after",new Advice(aspectClass.newInstance(),aspectMethods.get(config.getAspectAfter())));
+                        advices.add(new AfterReturningAdviceInterceptor(aspectClass.newInstance(),aspectMethods.get(config.getAspectAfter())));
                     }
                     if(!(null == config.getAspectAfterThrow() || "".equals(config.getAspectAfterThrow()))){
-                        Advice advice = new Advice(aspectClass.newInstance(),aspectMethods.get(config.getAspectAfterThrow()));
+                        AspectJAfterThrowingAdvice advice = new AspectJAfterThrowingAdvice(aspectClass.newInstance(),aspectMethods.get(config.getAspectAfterThrow()));
                         advice.setThrowName(config.getAspectAfterThrowingName());
-                        advices.put("afterThrow",advice);
+                        advices.add(advice);
                     }
 
                     //跟目标代理类的业务方法和Advices(<String,Advice>)建立一对多个关联关系，以便在Porxy类中获得
@@ -120,16 +127,30 @@ public class AdvisedSupport {
     /**
      * 根据一个目标代理类的方法，获得其对应的通知
      * @param method 代理类的方法
-     * @param o
      */
-    public Map<String, Advice> getAdvices(Method method, Object o) throws Exception {
-        // 享元设计模式的应用
-        Map<String,Advice> cache = methodCache.get(method);
-        if(null == cache) {
-            Method m = this.targetClass.getMethod(method.getName(), method.getParameterTypes());
-            cache = methodCache.get(m);
-            this.methodCache.put(m,cache);
+    //根据一个目标代理类的方法，获得其对应的通知
+    public List<Object> getInterceptorsAndDynamicInterceptionAdvice(Method method, Class<?> targetClass) throws Exception {
+
+        // 从缓存中获取
+        List<Object> cached = this.methodCache.get(method);
+        // 缓存未命中，则进行下一步处理
+        if (cached == null) {
+            Method m = targetClass.getMethod(method.getName(),method.getParameterTypes());
+            cached = this.methodCache.get(m);
+            // 存入缓存
+            this.methodCache.put(m, cached);
         }
-        return cache;
+        return cached;
     }
+
+//    public Map<String, Advice> getAdvices(Method method, Object o) throws Exception {
+//        // 享元设计模式的应用
+//        Map<String,Advice> cache = methodCache.get(method);
+//        if(null == cache) {
+//            Method m = this.targetClass.getMethod(method.getName(), method.getParameterTypes());
+//            cache = methodCache.get(m);
+//            this.methodCache.put(m,cache);
+//        }
+//        return cache;
+//    }
 }
