@@ -6,7 +6,12 @@
 
     <groupId>com.wychmod</groupId>
     <artifactId>mini-spring</artifactId>
+    <packaging>pom</packaging>
     <version>2.0</version>
+    <modules>
+        <module>mini-spring-iteration</module>
+        <module>mini-spring-original</module>
+    </modules>
 
     <properties>
         <!-- dependency versions -->
