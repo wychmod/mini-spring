@@ -1,7 +1,12 @@
 package com.wychmod.springframework.beans.factory.support;
 
-import com.wychmod.springframework.beans.factory.BeansException;
+
+import cn.hutool.core.bean.BeanUtil;
+import com.wychmod.springframework.beans.BeansException;
+import com.wychmod.springframework.beans.PropertyValue;
+import com.wychmod.springframework.beans.PropertyValues;
 import com.wychmod.springframework.beans.factory.config.BeanDefinition;
+import com.wychmod.springframework.beans.factory.config.BeanReference;
 
 import java.lang.reflect.Constructor;
 
@@ -10,7 +15,7 @@ import java.lang.reflect.Constructor;
  * @author: wychmod
  * @date: 2023/7/14
  */
-public class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory{
+public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory{
 
     private InstantiationStrategy instantiationStrategy = new CglibSubclassingInstantiationStrategy();
 
@@ -19,12 +24,37 @@ public class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory{
         Object bean = null;
         try {
             bean = createBeanInstance(beanDefinition, beanName, args);
+
+            //  给bean属性填充
+            applyPropertyValues(beanName, bean, beanDefinition);
         } catch (Exception e) {
             throw new BeansException("Instantiation of bean failed", e);
         }
 
         addSingleton(beanName, bean);
         return bean;
+    }
+
+    private void applyPropertyValues(String beanName, Object bean, BeanDefinition beanDefinition) {
+        try {
+            PropertyValues propertyValues = beanDefinition.getPropertyValues();
+            for (PropertyValue propertyValue : propertyValues.getPropertyValues()) {
+
+                String name = propertyValue.getName();
+                Object value = propertyValue.getValue();
+
+                if (value instanceof BeanReference) {
+                    // A 依赖 B，获取 B 的实例化
+                    BeanReference beanReference = (BeanReference) value;
+                    // 循环进行属性填充操作，如果遇到的是 BeanReference，那么就需要递归获取 Bean 实例
+                    value = getBean(beanReference.getBeanName());
+                }
+                // 属性填充
+                BeanUtil.setFieldValue(bean, name, value);
+            }
+        } catch (Exception e) {
+            throw new BeansException("Error setting property values：" + beanName);
+        }
     }
 
     private Object createBeanInstance(BeanDefinition beanDefinition, String beanName, Object[] args) {

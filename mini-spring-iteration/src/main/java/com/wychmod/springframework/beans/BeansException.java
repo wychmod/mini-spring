@@ -1,4 +1,4 @@
-package com.wychmod.springframework.beans.factory;
+package com.wychmod.springframework.beans;
 
 /**
  * @description: 定义 Bean 异常
