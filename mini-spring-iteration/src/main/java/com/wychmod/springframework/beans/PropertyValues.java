@@ -12,10 +12,18 @@ public class PropertyValues {
 
     private final List<PropertyValue> propertyValueList = new ArrayList<>();
 
+    /**
+     * 添加属性值
+     * @param pv 属性值
+     */
     public void addPropertyValue(PropertyValue pv) {
         this.propertyValueList.add(pv);
     }
 
+    /**
+     * 获取属性值列表
+     * @return 属性值列表
+     */
     public PropertyValue[] getPropertyValues() {
         return this.propertyValueList.toArray(new PropertyValue[0]);
     }
