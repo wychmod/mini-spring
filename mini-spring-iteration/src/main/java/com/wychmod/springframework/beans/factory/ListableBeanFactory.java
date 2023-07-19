@@ -6,10 +6,7 @@ import com.wychmod.springframework.beans.factory.BeanFactory;
 import java.util.Map;
 
 /**
- * @description: 将由bean工厂实现的{@linkBeanFactory}接口的扩展
- *可以枚举其所有bean实例，而不是尝试bean查找
- *根据客户的要求，按名称逐一列出。BeanFactory实现
- *预加载它们的所有bean定义（例如基于XML的工厂）可以实现
+ * @description: ListableBeanFactory接口是BeanFactory的子接口，它扩展了BeanFactory的功能，提供了对容器中所有Bean的列表操作和查询的能力。
  * @author: wychmod
  * @date: 2023/7/17
  */

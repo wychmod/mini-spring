@@ -4,7 +4,7 @@ import com.wychmod.springframework.beans.BeansException;
 import com.wychmod.springframework.beans.factory.BeanFactory;
 
 /**
- * @description:
+ * @description: 自动装配bean工厂配置接口，可以动态修改Bean属性
  * @author: wychmod
  * @date: 2023/7/17
  */
