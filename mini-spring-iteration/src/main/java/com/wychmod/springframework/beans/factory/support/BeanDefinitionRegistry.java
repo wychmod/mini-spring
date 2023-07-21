@@ -4,7 +4,7 @@ import com.wychmod.springframework.beans.BeansException;
 import com.wychmod.springframework.beans.factory.config.BeanDefinition;
 
 /**
- * @description: Bean 定义注册接口
+ * @description: Bean 配置注册接口
  * @author: wychmod
  * @date: 2023/7/14
  */
