@@ -1,6 +1,6 @@
 package com.wychmod.springframework.beans.factory.support;
 
-import com.wychmod.springframework.beans.factory.BeansException;
+import com.wychmod.springframework.beans.BeansException;
 import com.wychmod.springframework.beans.factory.config.BeanDefinition;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.NoOp;
