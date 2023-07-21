@@ -1,13 +1,13 @@
 package com.wychmod.springframework.beans.factory.support;
 
-import com.wychmod.springframework.beans.factory.BeansException;
+import com.wychmod.springframework.beans.BeansException;
 import com.wychmod.springframework.beans.factory.config.BeanDefinition;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * @description: JDK实例化策略
+ * @description: JDK实例化策略, 默认策略
  * @author: wychmod
  * @date: 2023/7/14
  */
