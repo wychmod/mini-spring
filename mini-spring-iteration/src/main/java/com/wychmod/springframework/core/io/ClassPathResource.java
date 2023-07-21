@@ -3,15 +3,16 @@ package com.wychmod.springframework.core.io;
 import cn.hutool.core.lang.Assert;
 import com.wychmod.springframework.utils.ClassUtils;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * @description: 类路径资源
+ * @description: 加载类路径资源
  * @author: wychmod
  * @date: 2023/7/14
  */
-public class ClassPathResource implements Resource{
+public class ClassPathResource implements Resource {
 
     private final String path;
 
@@ -31,7 +32,7 @@ public class ClassPathResource implements Resource{
     public InputStream getInputStream() throws IOException {
         InputStream is = classLoader.getResourceAsStream(path);
         if (is == null) {
-            throw new IOException(
+            throw new FileNotFoundException(
                     this.path + " cannot be opened because it does not exist");
         }
         return is;
