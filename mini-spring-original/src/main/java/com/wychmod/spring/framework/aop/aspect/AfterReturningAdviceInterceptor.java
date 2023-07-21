@@ -6,7 +6,7 @@ import com.wychmod.spring.framework.aop.intercept.MethodInvocation;
 import java.lang.reflect.Method;
 
 /**
- * @description:
+ * @description: 后置通知拦截器
  * @author: wychmod
  * @date: 2023/6/30
  */
