@@ -9,11 +9,11 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
- * @description: URL 资源
+ * @description: 加载 URL 资源
  * @author: wychmod
  * @date: 2023/7/14
  */
-public class UrlResource implements Resource{
+public class UrlResource implements Resource {
 
     private final URL url;
 
@@ -30,9 +30,10 @@ public class UrlResource implements Resource{
         }
         catch (IOException ex){
             if (con instanceof HttpURLConnection){
-                ((HttpURLConnection) con).connect();
+                ((HttpURLConnection) con).disconnect();
             }
             throw ex;
         }
     }
+
 }
