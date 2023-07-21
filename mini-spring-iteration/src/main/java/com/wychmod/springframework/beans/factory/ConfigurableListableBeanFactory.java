@@ -11,14 +11,10 @@ import com.wychmod.springframework.beans.factory.config.ConfigurableBeanFactory;
  * @author: wychmod
  * @date: 2023/7/14
  */
-public interface ConfigurableListableBeanFactory  extends ListableBeanFactory, AutowireCapableBeanFactory, ConfigurableBeanFactory {
+public interface ConfigurableListableBeanFactory extends ListableBeanFactory, AutowireCapableBeanFactory, ConfigurableBeanFactory {
 
     BeanDefinition getBeanDefinition(String beanName) throws BeansException;
 
-    /**
-     * 提前实例化单例Bean
-     */
     void preInstantiateSingletons() throws BeansException;
 
-    void addBeanPostProcessor(BeanPostProcessor beanPostProcessor);
 }
