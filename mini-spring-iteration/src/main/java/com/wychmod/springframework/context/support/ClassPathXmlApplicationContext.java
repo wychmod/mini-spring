@@ -8,6 +8,7 @@ import com.wychmod.springframework.beans.BeansException;
  * @date: 2023/7/17
  */
 public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContext {
+
     private String[] configLocations;
 
     public ClassPathXmlApplicationContext() {
