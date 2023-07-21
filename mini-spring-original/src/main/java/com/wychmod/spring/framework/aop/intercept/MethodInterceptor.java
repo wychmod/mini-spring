@@ -8,6 +8,9 @@ package com.wychmod.spring.framework.aop.intercept;
  */
 public interface MethodInterceptor {
 
+    /**
+     * @description: 方法拦截操作
+     */
     Object invoke(MethodInvocation invocation) throws Throwable;
 
 }
