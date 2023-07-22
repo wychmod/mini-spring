@@ -9,6 +9,7 @@ import com.wychmod.springframework.beans.factory.xml.XmlBeanDefinitionReader;
  * @date: 2023/7/17
  */
 public abstract class AbstractXmlApplicationContext extends AbstractRefreshableApplicationContext {
+
     @Override
     protected void loadBeanDefinitions(DefaultListableBeanFactory beanFactory) {
         XmlBeanDefinitionReader beanDefinitionReader = new XmlBeanDefinitionReader(beanFactory, this);
@@ -19,4 +20,5 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableA
     }
 
     protected abstract String[] getConfigLocations();
+
 }
