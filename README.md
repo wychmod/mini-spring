@@ -39,7 +39,7 @@
 > 代码均有注释，可以参照下面的图片和对应代码进行spring的理解与学习
 
 ## Bean的生命周期
-![img.png](img/img.png)
+![img.png](img/生命周期.png)
 
 ## Spring类加载全流程
 ![img_1.png](img/img_1.png)
