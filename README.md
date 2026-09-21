@@ -1,6 +1,6 @@
 <div align="center">
 
-![mini](img/mini-spring1.png)
+![mini-spring](img/logo.png)
 
 # mini-spring
 
