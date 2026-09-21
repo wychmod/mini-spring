@@ -39,16 +39,16 @@
 > 代码均有注释，可以参照下面的图片和对应代码进行spring的理解与学习
 
 ## Bean的生命周期
-![img.png](img/生命周期.png)
+![Bean生命周期](img/bean-lifecycle.png)
 
 ## Spring类加载全流程
-![img_1.png](img/img_1.png)
+![Spring类加载全流程](img/class-loading-flow.png)
 
 ## Spring IoC的类图
-![img_2.png](img/img_2.png)
+![Spring IoC类图](img/ioc-class-diagram.png)
 
 ## Spring AOP的类图
-![img_3.png](img/img_3.png)
+![Spring AOP类图](img/aop-class-diagram.png)
 
 ## Spring 三级缓存解决循环依赖
-![img_4.png](img/img_4.png)
+![Spring三级缓存解决循环依赖](img/three-level-cache.png)
