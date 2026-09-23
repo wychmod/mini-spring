@@ -27,7 +27,7 @@
 
 <br/>
 <div align="center">
-    <a href="https://book.douban.com/subject/36139432/" target="_blank">
+    <a href="https://book.douban.com/subject/34466260/" target="_blank">
     <img src="https://github.com/wychmod/mini-spring/blob/main/img/book1.png?raw=true" width="250px">
     </a>
     <a href="https://book.douban.com/subject/36139432/" target="_blank">

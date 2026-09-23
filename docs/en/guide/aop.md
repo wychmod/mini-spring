@@ -84,11 +84,18 @@ There are two moments where a proxy is created, coordinated with the [three-leve
 
 ## Try configuring an advice
 
+::: info Illustrative example
+The repository currently ships no runnable AOP example. The snippet below is the recommended wiring based on the framework's capabilities: register both the advisor and the auto proxy creator as plain beans.
+:::
+
 ```xml
 <bean class="com.wychmod.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor">
     <property name="expression" value="execution(* com.wychmod.springframework.test.bean.*.*(..))"/>
     <property name="advice" ref="beforeAdvice"/>
 </bean>
+
+<!-- The auto proxy creator: scans Advisors and weaves at bean creation time -->
+<bean class="com.wychmod.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
 ```
 
 After the container starts, every bean matching the expression automatically becomes a proxy at creation time — with zero awareness in user code.

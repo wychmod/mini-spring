@@ -28,7 +28,7 @@ cd mini-spring
 
 ## 跑通第一个用例
 
-iteration 模块的测试目录里有一个完整示例：`spring.xml` 定义了 Bean 与依赖，`ApiTest#test_convert` 从容器中取出 Bean 并完成类型转换。
+iteration 模块的测试目录里有一个完整示例：`ApiTest#test_convert` 从容器中取出 Bean 并打印结果。
 
 ```bash
 mvn test -pl mini-spring-iteration -Dtest=ApiTest
@@ -43,11 +43,22 @@ Husband husband = applicationContext.getBean("husband", Husband.class);
 System.out.println("测试结果：" + husband);
 ```
 
-就这三行，背后已经走完了：定位配置 → 资源加载 → 解析注册 → refresh 启动 → 实例化 → 属性填充 → Aware 回调 → 初始化 → 事件发布。这正是接下来几章要拆开讲的东西。
+::: warning 注意：仓库中的 spring.xml 当前是注释状态
+`src/main/resources/spring.xml` 在仓库里作为**样例文件**保留，内容整体被注释，直接运行上面的测试会因容器中没有 Bean 定义而失败。跑通它只需在 `spring.xml` 里写入最小配置：
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean id="husband" class="com.wychmod.springframework.test.bean.Husband"/>
+</beans>
+```
+
+这三行背后已经走完了：定位配置 → 资源加载 → 解析注册 → refresh 启动 → 实例化 → 属性填充 → Aware 回调 → 初始化 → 事件发布。这正是接下来几章要拆开讲的东西。
+:::
 
 ## 一级缓存的极简演示
 
-`CircleTest` 是一个不依赖框架的 `main` 方法，用 20 行代码演示循环依赖的本质——实例化后先把半成品放进缓存：
+`CircleTest` 是一个不依赖任何配置的 `main` 方法（**开箱即跑**），用 20 行代码演示循环依赖的本质——实例化后先把半成品放进缓存：
 
 ```java
 // 实例化对象入缓存

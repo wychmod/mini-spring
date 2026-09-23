@@ -13,7 +13,8 @@ mini-spring is split into two modules. They teach the same set of Spring ideas a
 | Positioning | A minimal version in 30 classes | A progressive, source-code-style implementation |
 | Naming | Independent, very short call chains | Same names and layering as Spring |
 | Entry point | Annotation scanning + `DispatchServlet` MVC | `ClassPathXmlApplicationContext` + `refresh()` |
-| AOP | CGLIB proxy + method interception chain | JDK / CGLIB dual proxy + Advisor auto-weaving |
+| Configuration | `@Component`-style annotation scanning | XML (`XmlBeanDefinitionReader`) + annotation scanning |
+| AOP | JDK & CGLIB dual proxies + interception chain | JDK / CGLIB dual proxy + Advisor auto-weaving |
 | Circular dependencies | One-level cache demo (`CircleTest`) | Full three-level cache implementation |
 | Best for | First contact, building intuition | Going deep after a first pass |
 

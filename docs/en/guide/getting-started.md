@@ -28,7 +28,7 @@ The repository is a Maven multi-module project:
 
 ## Run your first test case
 
-The iteration module's test directory contains a complete example: `spring.xml` defines beans and their dependencies, and `ApiTest#test_convert` pulls a bean out of the container with type conversion applied.
+The iteration module's test directory contains a complete example: `ApiTest#test_convert` pulls a bean out of the container and prints it.
 
 ```bash
 mvn test -pl mini-spring-iteration -Dtest=ApiTest
@@ -43,11 +43,22 @@ Husband husband = applicationContext.getBean("husband", Husband.class);
 System.out.println("Result: " + husband);
 ```
 
+::: warning Note: spring.xml in the repo is currently commented out
+`src/main/resources/spring.xml` is kept in the repository as a **sample file** with its content commented out, so the test above fails with an empty container as-is. To run it, write a minimal configuration into `spring.xml`:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean id="husband" class="com.wychmod.springframework.test.bean.Husband"/>
+</beans>
+```
+
 Behind these three lines the container has already: located the config → loaded resources → parsed and registered definitions → run the refresh bootstrap → instantiated → populated properties → invoked Aware callbacks → initialized → published events. That is exactly what the next chapters unpack.
+:::
 
 ## The one-level-cache demo
 
-`CircleTest` is a plain `main` method with no framework involved — about 20 lines showing the essence of circular dependencies: put the half-built instance into a cache right after instantiation.
+`CircleTest` is a plain `main` method with no configuration needed (**runs out of the box**) — about 20 lines showing the essence of circular dependencies: put the half-built instance into a cache right after instantiation.
 
 ```java
 // instantiate and cache

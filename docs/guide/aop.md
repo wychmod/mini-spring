@@ -84,11 +84,18 @@ protected Object wrapIfNecessary(Object bean, String beanName) {
 
 ## 配一个切面试试
 
+::: info 写法示意
+仓库目前没有附带可运行的 AOP 示例，下面是按照框架能力的推荐写法：把切面顾问与自动代理创建器都注册为普通 Bean 即可。
+:::
+
 ```xml
 <bean class="com.wychmod.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor">
     <property name="expression" value="execution(* com.wychmod.springframework.test.bean.*.*(..))"/>
     <property name="advice" ref="beforeAdvice"/>
 </bean>
+
+<!-- 自动代理创建器：扫描 Advisor 并在 Bean 创建时织入 -->
+<bean class="com.wychmod.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
 ```
 
 容器启动后，所有匹配该表达式的 Bean 在创建时自动变成代理对象——用户代码零感知。

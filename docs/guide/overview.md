@@ -13,7 +13,8 @@ mini-spring 分为两个模块，讲的是同一套 Spring 思想，但节奏完
 | 定位 | 30 个类的极简版 | 源码风格的渐进式实现 |
 | 类命名 | 独立命名，链路极短 | 与 Spring 源码同名同分层 |
 | 入口 | 注解扫描 + `DispatchServlet` 的 MVC | `ClassPathXmlApplicationContext` + `refresh()` |
-| AOP | CGLIB 代理 + 方法拦截链 | JDK / CGLIB 双代理 + Advisor 自动织入 |
+| 配置方式 | `@Component` 等注解扫描 | XML（`XmlBeanDefinitionReader`）+ 注解扫描 |
+| AOP | JDK / CGLIB 双代理 + 方法拦截链 | JDK / CGLIB 双代理 + Advisor 自动织入 |
 | 循环依赖 | 一级缓存演示（`CircleTest`） | 完整三级缓存实现 |
 | 适合谁 | 第一次接触，建立直觉 | 读过一遍后，深入每个细节 |
 

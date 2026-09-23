@@ -19,7 +19,7 @@ new ClassPathXmlApplicationContext("classpath:spring.xml")
 
 ## 第二步：资源加载与解析
 
-`AbstractRefreshableApplicationContext#loadBeanDefinitions` 把加载定义的工作交给 `XmlBeanDefinitionReader`：
+`AbstractRefreshableApplicationContext` 把 `loadBeanDefinitions` 声明为抽象方法，XML 场景下由子类 `AbstractXmlApplicationContext` 实现——它创建 `XmlBeanDefinitionReader` 并把配置地址交给它：
 
 - `loadBeanDefinitions(location)` → `ResourceLoader` 拿到 `Resource`（`ClassPathResource` / `FileSystemResource` / `UrlResource`）
 - `doLoadBeanDefinitions(InputStream)` 用 SAX 解析 XML：

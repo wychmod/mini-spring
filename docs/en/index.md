@@ -86,7 +86,7 @@ async function copyClone() {
         <p>A minimal Spring implemented in 30 classes. Short names, short call chains — perfect for building a first intuition of what Spring really is.</p>
         <ul>
           <li>Annotation scanning + a DispatchServlet-based MVC</li>
-          <li>Minimal AOP: CGLIB proxy + method interception chain</li>
+          <li>Minimal AOP: JDK & CGLIB dual proxies + interception chain</li>
           <li>Companion book: "Spring 5 Core Principles"</li>
         </ul>
       </div>

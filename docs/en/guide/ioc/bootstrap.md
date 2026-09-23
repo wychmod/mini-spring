@@ -19,7 +19,7 @@ new ClassPathXmlApplicationContext("classpath:spring.xml")
 
 ## Step 2: Load and parse resources
 
-`AbstractRefreshableApplicationContext#loadBeanDefinitions` hands definition loading to `XmlBeanDefinitionReader`:
+`AbstractRefreshableApplicationContext` declares `loadBeanDefinitions` as abstract; for XML it is implemented by the subclass `AbstractXmlApplicationContext`, which creates an `XmlBeanDefinitionReader` and hands the config locations over:
 
 - `loadBeanDefinitions(location)` → the `ResourceLoader` produces a `Resource` (`ClassPathResource` / `FileSystemResource` / `UrlResource`)
 - `doLoadBeanDefinitions(InputStream)` parses the XML with SAX:
