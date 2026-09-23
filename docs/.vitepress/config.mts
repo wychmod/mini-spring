@@ -68,7 +68,7 @@ export default defineConfig({
           },
         },
         footer: {
-          copyright: 'Released under the Apache License 2.0 · QQ 群 545480453',
+          copyright: 'Released under the Apache License 2.0 · QQ 545480453',
         },
       },
     },
@@ -120,7 +120,7 @@ export default defineConfig({
         lightModeSwitchTitle: 'Switch to light theme',
         darkModeSwitchTitle: 'Switch to dark theme',
         footer: {
-          copyright: 'Released under the Apache License 2.0 · QQ Group 545480453',
+          copyright: 'Released under the Apache License 2.0 · QQ 545480453',
         },
       },
     },
