@@ -5,4 +5,6 @@
 docs/node_modules/
 docs/.vitepress/cache/
 docs/.vitepress/dist/
+docs/.vitepress/dist_*/
+docs/.vitepress/*.timestamp-*.mjs
 .qoder-credits/
