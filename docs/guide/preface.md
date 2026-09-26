@@ -2,9 +2,11 @@
 title: 为什么手写 Spring
 ---
 
-# 为什么手写 Spring
+<DsDocHead title="为什么手写 Spring" group="开始" :meta="['预计阅读 4 分钟', '涉及 4 个类']">
 
 Spring 是 Java 后端工程师绕不开的框架，但「会用」和「懂」之间隔着一整座源码的大山。手写一个迷你版 Spring，是翻越这座山性价比最高的方式。
+
+</DsDocHead>
 
 ## 三个理由
 

@@ -2,9 +2,11 @@
 title: Bean Lifecycle
 ---
 
-# Bean Lifecycle
+<DsDocHead title="Bean Lifecycle" group="IoC Container" :meta="['5 min read', '23 classes']">
 
 At the end of the previous chapter, `preInstantiateSingletons()` handed control over to `createBean`. This chapter unpacks the main flow of `AbstractAutowireCapableBeanFactory`.
+
+</DsDocHead>
 
 ![Bean lifecycle](/images/bean-lifecycle.png)
 

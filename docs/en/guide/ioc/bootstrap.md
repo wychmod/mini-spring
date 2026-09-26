@@ -2,9 +2,11 @@
 title: Container Bootstrap Flow
 ---
 
-# Container Bootstrap Flow
+<DsDocHead title="Container Bootstrap Flow" group="IoC Container" :meta="['4 min read', '25 classes']">
 
 What happens between `new ClassPathXmlApplicationContext("classpath:spring.xml")` and beans being usable? This chapter walks the real call chain.
+
+</DsDocHead>
 
 ![Class loading flow](/images/class-loading-flow.png)
 

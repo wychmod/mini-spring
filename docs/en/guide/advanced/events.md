@@ -2,9 +2,11 @@
 title: Events
 ---
 
-# Events
+<DsDocHead title="Events" group="Advanced" :meta="['4 min read', '8 classes']">
 
 The container is more than a bean factory — it broadcasts events at key moments, letting external code observe the lifecycle without intruding into the container. This chapter unpacks the three event-related steps inside `refresh()`.
+
+</DsDocHead>
 
 ## Three roles
 

@@ -2,9 +2,11 @@
 title: IoC 全景类图
 ---
 
-# IoC 全景类图
+<DsDocHead title="IoC 全景类图" group="IoC 容器" :meta="['预计阅读 4 分钟', '涉及 16 个类']">
 
 这张图把 iteration 模块按功能模块分组铺开，是全站的「地图」。每个面板都可以在对应章节找到逐类讲解。
+
+</DsDocHead>
 
 ![Spring IoC 类图](/images/ioc-class-diagram.png)
 

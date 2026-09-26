@@ -2,9 +2,11 @@
 title: AOP
 ---
 
-# AOP
+<DsDocHead title="AOP" group="Advanced" :meta="['6 min read', '18 classes']">
 
 AOP answers three questions: **where to cut** (pointcut), **what to apply** (advice), and **how to apply it** (proxy). The `aop` package is organized along exactly those lines.
+
+</DsDocHead>
 
 ![AOP class diagram](/images/aop-class-diagram.png)
 

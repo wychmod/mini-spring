@@ -2,9 +2,11 @@
 title: 三级缓存解决循环依赖
 ---
 
-# 三级缓存解决循环依赖
+<DsDocHead title="三级缓存解决循环依赖" group="IoC 容器" :meta="['预计阅读 4 分钟', '涉及 3 个类']">
 
 A 依赖 B，B 又依赖 A——创建 A 时要等 B，创建 B 时又要等 A，死锁。Spring 的答案是把「实例化完成但未填充属性」的半成品提前暴露出去，mini-spring 完整复刻了这个设计。
+
+</DsDocHead>
 
 ![三级缓存解决循环依赖](/images/three-level-cache.png)
 

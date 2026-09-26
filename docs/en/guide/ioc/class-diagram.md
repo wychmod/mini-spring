@@ -2,9 +2,11 @@
 title: IoC Class Diagram
 ---
 
-# IoC Class Diagram
+<DsDocHead title="IoC Class Diagram" group="IoC Container" :meta="['4 min read', '18 classes']">
 
 This diagram lays out the iteration module grouped by functional area — the "map" for the whole site. Each panel is explained chapter by chapter elsewhere.
+
+</DsDocHead>
 
 ![IoC class diagram](/images/ioc-class-diagram.png)
 

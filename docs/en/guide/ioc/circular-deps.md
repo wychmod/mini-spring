@@ -2,9 +2,11 @@
 title: Three-Level Cache & Circular Dependencies
 ---
 
-# Three-Level Cache & Circular Dependencies
+<DsDocHead title="Three-Level Cache &amp; Circular Dependencies" group="IoC Container" :meta="['4 min read', '3 classes']">
 
 A depends on B, and B depends on A — creating A waits for B, creating B waits for A: deadlock. Spring's answer is to expose the *instantiated-but-not-yet-populated* half-product early, and mini-spring replicates that design completely.
+
+</DsDocHead>
 
 ![Three-level cache](/images/three-level-cache.png)
 

@@ -2,9 +2,11 @@
 title: Bean 生命周期
 ---
 
-# Bean 生命周期
+<DsDocHead title="Bean 生命周期" group="IoC 容器" :meta="['预计阅读 5 分钟', '涉及 23 个类']">
 
 上一章末尾，`preInstantiateSingletons()` 把球踢给了 `createBean`。这一章拆开 `AbstractAutowireCapableBeanFactory` 的主流程。
+
+</DsDocHead>
 
 ![Bean 生命周期](/images/bean-lifecycle.png)
 

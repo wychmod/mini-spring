@@ -2,9 +2,11 @@
 title: Why Build Your Own Spring
 ---
 
-# Why Build Your Own Spring
+<DsDocHead title="Why Build Your Own Spring" group="Start" :meta="['4 min read', '4 classes']">
 
 Spring is unavoidable for Java backend engineers, but there is a mountain of source code between *using it* and *understanding it*. Hand-writing a mini Spring is the highest-leverage way to climb it.
+
+</DsDocHead>
 
 ## Three reasons
 

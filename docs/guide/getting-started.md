@@ -2,13 +2,19 @@
 title: 环境与运行
 ---
 
-# 环境与运行
+<DsDocHead title="环境与运行" group="快速开始" :meta="['预计阅读 6 分钟', '涉及 2 个类']">
+
+从克隆仓库到跑通第一个测试用例，这一页把环境要求、目录结构与常见报错一次说清。
+
+</DsDocHead>
 
 ## 环境要求
 
-- JDK 1.8
-- Maven 3.x
-- 一个顺手的 IDE（IDEA / Eclipse 均可）
+| 项 | 要求 | 说明 |
+| --- | --- | --- |
+| JDK | 1.8 及以上 | 已在 8 / 11 / 17 上验证 |
+| Maven | 3.6 及以上 | 用于构建与跑测试 |
+| IDE | IntelliJ IDEA / Eclipse | 需开启注解处理（Lombok 依赖它） |
 
 ## 获取代码
 
@@ -25,6 +31,23 @@ cd mini-spring
     <module>mini-spring-original</module>
 </modules>
 ```
+
+构建两个模块（跳过测试，先确认编译通过）：
+
+```bash
+mvn -q clean test-compile
+```
+
+## 目录结构
+
+<pre class="ds-tree"><span class="root">mini-spring/</span>
+<span class="conn">├─</span> mini-spring-original/     29 个类的极简版（注解扫描）
+<span class="conn">├─</span> mini-spring-iteration/    98 个类，源码风格的渐进式实现
+<span class="conn">├─</span> docs/                     VitePress 文档站（本站）
+<span class="conn">└─</span> img/                      架构图（SVG + PNG）
+</pre>
+
+每个包负责什么，见[目录结构导览](/guide/start/structure)。
 
 ## 跑通第一个用例
 
@@ -77,3 +100,10 @@ mvn test-compile -pl mini-spring-iteration
 ```
 
 它就是三级缓存的「思想原型」，读它之后再进入[三级缓存](/guide/ioc/circular-deps)章节会非常顺。
+
+## 遇到报错？
+
+<div class="ds-grid ds-grid--2">
+<article class="ds-card"><span class="tag">ERRORS</span><h3>常见报错排查</h3><p>8 条高频问题的现象、原因与解决，支持关键词搜索。</p><a class="ds-card-link" :href="$href('/guide/start/troubleshooting')">打开排查表 →</a></article>
+<article class="ds-card"><span class="tag">FAQ</span><h3>常见问题</h3><p>「为什么三级缓存要存工厂」这类原理困惑，在 FAQ 里集中回答。</p><a class="ds-card-link" :href="$href('/faq')">查看 FAQ →</a></article>
+</div>

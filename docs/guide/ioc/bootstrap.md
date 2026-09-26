@@ -2,9 +2,11 @@
 title: 容器启动全流程
 ---
 
-# 容器启动全流程
+<DsDocHead title="容器启动全流程" group="IoC 容器" :meta="['预计阅读 4 分钟', '涉及 25 个类']">
 
 一个 `new ClassPathXmlApplicationContext("classpath:spring.xml")` 到 Bean 可用之间发生了什么？这一章沿真实调用链走一遍。
+
+</DsDocHead>
 
 ![Spring 类加载全流程](/images/class-loading-flow.png)
 

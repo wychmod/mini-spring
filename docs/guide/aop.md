@@ -2,9 +2,11 @@
 title: AOP 原理与实现
 ---
 
-# AOP 原理与实现
+<DsDocHead title="AOP 原理与实现" group="进阶特性" :meta="['预计阅读 6 分钟', '涉及 19 个类']">
 
 AOP 要回答三个问题：**在哪切**（切点）、**切什么**（通知）、**怎么切**（代理）。mini-spring 的 `aop` 包按这个结构组织。
+
+</DsDocHead>
 
 ![Spring AOP 类图](/images/aop-class-diagram.png)
 

@@ -2,13 +2,20 @@
 title: Setup & Run
 ---
 
-# Setup & Run
+<DsDocHead title="Setup &amp; Run" group="Getting Started" :meta="['6 min read', '2 classes']">
+
+From cloning the repo to running your first test — requirements, project layout and common
+pitfalls in one page.
+
+</DsDocHead>
 
 ## Requirements
 
-- JDK 1.8
-- Maven 3.x
-- Any IDE you like (IDEA / Eclipse both fine)
+| Item | Requirement | Notes |
+| --- | --- | --- |
+| JDK | 1.8 or newer | Verified on 8 / 11 / 17 |
+| Maven | 3.6 or newer | Used to build and run tests |
+| IDE | IntelliJ IDEA / Eclipse | Annotation processing must be enabled (Lombok needs it) |
 
 ## Get the code
 
@@ -25,6 +32,23 @@ The repository is a Maven multi-module project:
     <module>mini-spring-original</module>
 </modules>
 ```
+
+Build both modules, skipping tests, to confirm everything compiles:
+
+```bash
+mvn -q clean test-compile
+```
+
+## Project layout
+
+<pre class="ds-tree"><span class="root">mini-spring/</span>
+<span class="conn">├─</span> mini-spring-original/     29-class minimal version (annotation scanning)
+<span class="conn">├─</span> mini-spring-iteration/    98 classes, progressive, source-code-style
+<span class="conn">├─</span> docs/                     VitePress documentation site (this site)
+<span class="conn">└─</span> img/                      Architecture diagrams (SVG + PNG)
+</pre>
+
+What each package is responsible for is covered in [Project Structure](/en/guide/start/structure).
 
 ## Run your first test case
 
@@ -77,3 +101,10 @@ mvn test-compile -pl mini-spring-iteration
 ```
 
 It is the *idea prototype* of the three-level cache — read it and the [Three-Level Cache](/en/guide/ioc/circular-deps) chapter will feel natural.
+
+## Hit an error?
+
+<div class="ds-grid ds-grid--2">
+<article class="ds-card"><span class="tag">ERRORS</span><h3>Troubleshooting</h3><p>Eight common issues with symptom, cause and fix — searchable.</p><a class="ds-card-link" :href="$href('/en/guide/start/troubleshooting')">Open the table →</a></article>
+<article class="ds-card"><span class="tag">FAQ</span><h3>FAQ</h3><p>Conceptual questions such as "why does the third-level cache store a factory".</p><a class="ds-card-link" :href="$href('/en/faq')">Read the FAQ →</a></article>
+</div>
