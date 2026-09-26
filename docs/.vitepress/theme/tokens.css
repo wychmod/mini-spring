@@ -1,0 +1,186 @@
+/* ===========================================================================
+   mini-spring 设计令牌（Design Tokens）
+   全站唯一的数值来源。任何页面与组件都不得硬编码颜色、字号、间距。
+   四组令牌：色彩 · 字体 · 间距 · 圆角与描边
+   =========================================================================== */
+
+:root {
+  /* ── 色彩 · 中性色阶（亮色） ─────────────────────────────────────── */
+  --ds-bg: #f6f7f9;
+  --ds-bg-alt: #eceef2;
+  --ds-surface: #ffffff;
+  --ds-surface-2: #fafbfc;
+  --ds-border: #e3e5ea;
+  --ds-border-strong: #d0d4db;
+  --ds-text-1: #14161a;
+  --ds-text-2: #666c76;
+  --ds-text-3: #9aa0aa;
+
+  /* ── 色彩 · 品牌与语义（亮色） ───────────────────────────────────── */
+  --ds-brand: #2e63e7;
+  --ds-brand-hover: #2456d0;
+  --ds-brand-soft: rgba(46, 99, 231, 0.12);
+  --ds-accent: #27c9ff;
+  --ds-violet: #7c5ce8;
+  --ds-success: #17a673;
+  --ds-warning: #d98a1f;
+  --ds-danger: #d9536b;
+
+  /* 语义浅底（徽章 / 提示块） */
+  --ds-success-soft: rgba(23, 166, 115, 0.1);
+  --ds-warning-soft: rgba(217, 138, 31, 0.1);
+  --ds-danger-soft: rgba(217, 83, 107, 0.1);
+  --ds-violet-soft: rgba(124, 92, 232, 0.1);
+  --ds-accent-soft: rgba(39, 201, 255, 0.12);
+
+  /* ── 色彩 · 代码 ─────────────────────────────────────────────────── */
+  --ds-code-bg: #16171b;
+  --ds-code-inline-bg: #f1f3f6;
+  --ds-code-line: #3a3d44;
+
+  /* ── 字体 ────────────────────────────────────────────────────────── */
+  --ds-font-sans: 'Inter Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --ds-font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, 'Courier New',
+    monospace;
+  --ds-font-feature: 'tnum' 1, 'cv05' 1, 'ss01' 1;
+
+  /* 字号阶梯 8 级 */
+  --ds-fs-display: 60px;
+  --ds-fs-h1: 34px;
+  --ds-fs-h2: 24px;
+  --ds-fs-h3: 17px;
+  --ds-fs-body-l: 16.5px;
+  --ds-fs-body: 15px;
+  --ds-fs-sm: 13.5px;
+  --ds-fs-caption: 12px;
+
+  /* ── 间距 · 8px 基准栅格 ─────────────────────────────────────────── */
+  --ds-space-1: 4px;
+  --ds-space-2: 8px;
+  --ds-space-3: 12px;
+  --ds-space-4: 16px;
+  --ds-space-5: 24px;
+  --ds-space-6: 32px;
+  --ds-space-7: 48px;
+  --ds-space-8: 72px;
+  --ds-space-9: 96px;
+
+  /* 布局 */
+  --ds-w-portal: 1120px;
+  --ds-w-wide: 1080px;
+  --ds-w-narrow: 920px;
+  --ds-nav-h: 64px;
+  --ds-gutter: 24px;
+  --ds-section-y: var(--ds-space-8);
+  --ds-radius-sm: 6px;
+  --ds-radius: 10px;
+  --ds-radius-lg: 14px;
+  --ds-radius-xl: 20px;
+  --ds-radius-pill: 999px;
+  --ds-stroke: 1px;
+
+  /* ── 阴影 · 以描边为主、阴影为辅 ─────────────────────────────────── */
+  --ds-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --ds-shadow-2: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --ds-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.1);
+
+  /* ── 动效 ────────────────────────────────────────────────────────── */
+  --ds-ease-out: cubic-bezier(0.2, 0.8, 0.3, 1);
+  --ds-t-color: 120ms ease;
+  --ds-t-move: 150ms var(--ds-ease-out);
+  --ds-t-panel: 180ms ease-out;
+  --ds-t-height: 200ms ease-out;
+
+  /* ── 强调色循环（卡片用，3 色循环） ──────────────────────────────── */
+  --ds-accent-1: var(--ds-brand);
+  --ds-accent-2: var(--ds-accent);
+  --ds-accent-3: var(--ds-violet);
+
+  /* ── 映射到 VitePress 主题变量 ───────────────────────────────────── */
+  --vp-c-brand-1: var(--ds-brand);
+  --vp-c-brand-2: var(--ds-brand-hover);
+  --vp-c-brand-3: #1f4cbd;
+  --vp-c-brand-soft: var(--ds-brand-soft);
+
+  --vp-c-bg: var(--ds-bg);
+  --vp-c-bg-alt: var(--ds-bg-alt);
+  --vp-c-bg-soft: var(--ds-bg-alt);
+  --vp-c-bg-elv: var(--ds-surface);
+  --vp-c-divider: var(--ds-border);
+  --vp-c-gutter: var(--ds-border);
+  --vp-c-text-1: var(--ds-text-1);
+  --vp-c-text-2: var(--ds-text-2);
+  --vp-c-text-3: var(--ds-text-3);
+
+  --vp-c-default-soft: var(--ds-bg-alt);
+  --vp-c-tip-1: var(--ds-brand);
+  --vp-c-tip-soft: var(--ds-brand-soft);
+  --vp-c-warning-1: var(--ds-warning);
+  --vp-c-warning-soft: var(--ds-warning-soft);
+  --vp-c-danger-1: var(--ds-danger);
+  --vp-c-danger-soft: var(--ds-danger-soft);
+
+  --vp-sidebar-bg-color: var(--ds-bg);
+  --vp-nav-bg-color: var(--ds-bg);
+  --vp-code-block-bg: var(--ds-code-bg);
+  --vp-code-lang-color: #8b909b;
+  --vp-code-line-highlight-color: rgba(255, 255, 255, 0.06);
+  --vp-custom-block-info-bg: var(--ds-bg-alt);
+  --vp-custom-block-info-border: transparent;
+  --vp-custom-block-tip-bg: var(--ds-brand-soft);
+  --vp-custom-block-tip-border: transparent;
+  --vp-custom-block-warning-bg: var(--ds-warning-soft);
+  --vp-custom-block-warning-border: transparent;
+  --vp-custom-block-danger-bg: var(--ds-danger-soft);
+  --vp-custom-block-danger-border: transparent;
+
+  --vp-font-family-base: var(--ds-font-sans);
+  --vp-font-family-mono: var(--ds-font-mono);
+}
+
+/* ===========================================================================
+   暗色主题：所有令牌成对定义
+   =========================================================================== */
+
+.dark {
+  --ds-bg: #0e0f11;
+  --ds-bg-alt: #141517;
+  --ds-surface: #18191c;
+  --ds-surface-2: #1e1f23;
+  --ds-border: #282a2f;
+  --ds-border-strong: #3a3d44;
+  --ds-text-1: #e6e8ec;
+  --ds-text-2: #a0a6b0;
+  --ds-text-3: #707680;
+
+  --ds-brand: #7aa2ff;
+  --ds-brand-hover: #93b3ff;
+  --ds-brand-soft: rgba(122, 162, 255, 0.16);
+  --ds-accent: #5ad4ff;
+  --ds-violet: #a48cff;
+  --ds-success: #3fc79a;
+  --ds-warning: #e8a23d;
+  --ds-danger: #e2637a;
+
+  --ds-success-soft: rgba(63, 199, 154, 0.14);
+  --ds-warning-soft: rgba(232, 162, 61, 0.14);
+  --ds-danger-soft: rgba(226, 99, 122, 0.14);
+  --ds-violet-soft: rgba(164, 140, 255, 0.16);
+  --ds-accent-soft: rgba(90, 212, 255, 0.14);
+
+  --ds-code-bg: #101114;
+  --ds-code-inline-bg: #22242a;
+  --ds-code-line: #2a2c32;
+
+  --ds-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --ds-shadow-2: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --ds-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.5);
+
+  --vp-c-brand-1: var(--ds-brand);
+  --vp-c-brand-2: var(--ds-brand-hover);
+  --vp-c-brand-3: #b0c8ff;
+  --vp-c-brand-soft: var(--ds-brand-soft);
+
+  --vp-code-lang-color: #7b8089;
+}

@@ -1,0 +1,741 @@
+/* ===========================================================================
+   基础层：全站排版、VitePress 框架组件覆写（导航 / 侧栏 / 大纲 / 页脚 / 代码块）
+   =========================================================================== */
+
+/* ── 全局 ──────────────────────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-fs-body);
+  font-feature-settings: var(--ds-font-feature);
+  letter-spacing: 0.01em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 跳到主内容：仅键盘聚焦时出现 */
+.ds-skip-link {
+  position: absolute;
+  top: -60px;
+  left: var(--ds-gutter);
+  z-index: 100;
+  padding: 10px 18px;
+  border-radius: var(--ds-radius);
+  background: var(--ds-brand);
+  color: #fff;
+  font-size: var(--ds-fs-sm);
+  font-weight: 650;
+  transition: top var(--ds-t-move);
+}
+
+.ds-skip-link:focus {
+  top: 12px;
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ds-brand);
+  outline-offset: 2px;
+  border-radius: var(--ds-radius-sm);
+}
+
+/* 禁止用 outline:none 抹掉焦点，仅对鼠标点击隐藏 */
+.VPNavBarMenuLink:focus,
+.VPSidebarItem .link:focus {
+  outline-offset: 0;
+}
+
+/* ── 内容区宽度 ────────────────────────────────────────────────────────── */
+
+.VPDoc .container,
+.VPPage .container {
+  max-width: 1240px;
+}
+
+.VPDoc .content-container {
+  max-width: var(--ds-w-narrow);
+}
+
+.VPDoc.has-aside .content-container {
+  max-width: var(--ds-w-narrow);
+}
+
+/* 大纲为空时正文居中 */
+.VPDoc:not(.has-aside) .content {
+  max-width: var(--ds-w-narrow);
+  margin: 0 auto;
+}
+
+/* ── 文档正文排版 ──────────────────────────────────────────────────────── */
+
+.vp-doc {
+  font-size: var(--ds-fs-body);
+}
+
+.vp-doc h1 {
+  font-size: var(--ds-fs-h1);
+  font-weight: 750;
+  line-height: 1.22;
+  letter-spacing: -0.025em;
+  color: var(--ds-text-1);
+}
+
+.vp-doc h2 {
+  margin-top: var(--ds-space-7);
+  padding-top: 0;
+  border-top: none;
+  font-size: var(--ds-fs-h2);
+  font-weight: 700;
+  line-height: 1.32;
+  letter-spacing: -0.02em;
+  color: var(--ds-text-1);
+}
+
+.vp-doc h2 + h3 {
+  margin-top: var(--ds-space-4);
+}
+
+.vp-doc h3 {
+  margin-top: var(--ds-space-6);
+  font-size: var(--ds-fs-h3);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--ds-text-1);
+}
+
+.vp-doc h4 {
+  font-weight: 650;
+  color: var(--ds-text-1);
+}
+
+.vp-doc p,
+.vp-doc li {
+  line-height: 1.75;
+  color: var(--ds-text-2);
+}
+
+.vp-doc p {
+  margin: 1.25em 0;
+}
+
+.vp-doc strong {
+  font-weight: 650;
+  color: var(--ds-text-1);
+}
+
+.vp-doc a {
+  font-weight: 500;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.vp-doc ul,
+.vp-doc ol {
+  padding-left: 1.35em;
+}
+
+.vp-doc li + li {
+  margin-top: 6px;
+}
+
+.vp-doc hr {
+  margin: var(--ds-space-7) 0;
+  border-color: var(--ds-border);
+}
+
+.vp-doc blockquote {
+  margin: var(--ds-space-5) 0;
+  padding: 4px 0 4px 18px;
+  border-left: 3px solid var(--ds-brand);
+  background: transparent;
+}
+
+.vp-doc blockquote > p {
+  font-size: var(--ds-fs-body);
+  color: var(--ds-text-2);
+}
+
+/* ── 行内代码 ──────────────────────────────────────────────────────────── */
+
+.vp-doc :not(pre) > code {
+  padding: 3px 6px;
+  border-radius: var(--ds-radius-sm);
+  background: var(--ds-code-inline-bg);
+  font-family: var(--ds-font-mono);
+  font-size: 87.5%;
+  font-weight: 450;
+  color: var(--ds-text-1);
+}
+
+.vp-doc a > code {
+  color: var(--ds-brand);
+}
+
+/* ── 代码块 ────────────────────────────────────────────────────────────── */
+
+.vp-doc div[class*='language-'] {
+  margin: var(--ds-space-5) 0;
+  border: var(--ds-stroke) solid var(--ds-border);
+  border-radius: var(--ds-radius);
+  background: var(--ds-code-bg);
+}
+
+.vp-doc div[class*='language-'] pre {
+  padding: 16px 20px;
+}
+
+.vp-doc div[class*='language-'] code {
+  font-family: var(--ds-font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.vp-doc div[class*='language-'] > span.lang {
+  top: 8px;
+  right: 12px;
+  font-family: var(--ds-font-mono);
+  font-size: 11.5px;
+  color: var(--vp-code-lang-color);
+}
+
+.vp-doc [class*='language-'] > button.copy {
+  top: 6px;
+  right: 8px;
+  border: var(--ds-stroke) solid transparent;
+  border-radius: var(--ds-radius-sm);
+}
+
+.vp-doc [class*='language-'] > button.copy:hover {
+  border-color: var(--ds-border-strong);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* 触摸设备：复制按钮常驻显示，不依赖 hover */
+@media (hover: none) {
+  .vp-doc [class*='language-'] > button.copy {
+    opacity: 1;
+  }
+}
+
+/* 代码块横向滚动时右缘渐隐 */
+.vp-doc div[class*='language-'] pre {
+  scrollbar-width: thin;
+}
+
+/* 行号 */
+.vp-doc .line-numbers-wrapper {
+  padding-top: 16px;
+  color: var(--ds-code-line);
+}
+
+/* ── 表格 ──────────────────────────────────────────────────────────────── */
+
+.vp-doc table {
+  display: table;
+  width: 100%;
+  margin: var(--ds-space-5) 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: var(--ds-stroke) solid var(--ds-border);
+  border-radius: var(--ds-radius);
+  overflow: hidden;
+  font-size: var(--ds-fs-sm);
+}
+
+.vp-doc tr {
+  border-top: none;
+  background: transparent;
+  transition: background var(--ds-t-color);
+}
+
+.vp-doc tr:nth-child(2n) {
+  background: transparent;
+}
+
+.vp-doc tr:hover {
+  background: var(--ds-surface-2);
+}
+
+.vp-doc th {
+  padding: 12px 16px;
+  background: var(--ds-surface-2);
+  border-bottom: var(--ds-stroke) solid var(--ds-border);
+  font-size: var(--ds-fs-caption);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ds-text-2);
+  text-align: left;
+}
+
+.vp-doc td {
+  padding: 12px 16px;
+  border-top: var(--ds-stroke) solid var(--ds-border);
+  color: var(--ds-text-2);
+  line-height: 1.65;
+}
+
+.vp-doc tr:first-child td {
+  border-top: none;
+}
+
+.vp-doc td:first-child {
+  font-weight: 500;
+  color: var(--ds-text-1);
+}
+
+.vp-doc th,
+.vp-doc td {
+  border-left: none;
+  border-right: none;
+}
+
+/* ── 自定义区块（Callout） ─────────────────────────────────────────────── */
+
+.vp-doc .custom-block {
+  margin: var(--ds-space-5) 0;
+  padding: 14px 18px;
+  border: none;
+  border-left: 3px solid var(--ds-border-strong);
+  border-radius: var(--ds-radius);
+  background: var(--ds-bg-alt);
+  font-size: 14px;
+}
+
+.vp-doc .custom-block .custom-block-title {
+  margin-bottom: 6px;
+  font-size: var(--ds-fs-sm);
+  font-weight: 650;
+  color: var(--ds-text-1);
+}
+
+.vp-doc .custom-block p {
+  margin: 4px 0;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.vp-doc .custom-block.tip {
+  border-left-color: var(--ds-brand);
+  background: var(--ds-brand-soft);
+}
+
+.vp-doc .custom-block.tip .custom-block-title {
+  color: var(--ds-brand);
+}
+
+.vp-doc .custom-block.info {
+  border-left-color: var(--ds-brand);
+  background: var(--ds-bg-alt);
+}
+
+.vp-doc .custom-block.warning {
+  border-left-color: var(--ds-warning);
+  background: var(--ds-warning-soft);
+}
+
+.vp-doc .custom-block.warning .custom-block-title {
+  color: var(--ds-warning);
+}
+
+.vp-doc .custom-block.danger {
+  border-left-color: var(--ds-danger);
+  background: var(--ds-danger-soft);
+}
+
+.vp-doc .custom-block.danger .custom-block-title {
+  color: var(--ds-danger);
+}
+
+/* ── 导航栏 ────────────────────────────────────────────────────────────── */
+
+.VPNav {
+  --vp-nav-height: var(--ds-nav-h);
+}
+
+.VPNavBar {
+  border-bottom: var(--ds-stroke) solid transparent;
+  transition: border-color var(--ds-t-color);
+}
+
+.VPNavBar:not(.home) {
+  border-bottom-color: var(--ds-border);
+}
+
+.VPNavBar.has-sidebar .content {
+  background: transparent;
+}
+
+.VPNavBar .divider {
+  display: none;
+}
+
+.VPNavBar .title {
+  border-bottom: none;
+}
+
+.VPNavBar .title .VPImage {
+  border-radius: var(--ds-radius-sm);
+}
+
+.VPNavBarTitle .title {
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.VPNavBarMenuLink,
+.VPNavBarMenuGroup .text {
+  font-size: var(--ds-fs-sm);
+  font-weight: 500;
+  color: var(--ds-text-2);
+  transition: color var(--ds-t-color);
+}
+
+.VPNavBarMenuLink:hover,
+.VPNavBarMenuGroup:hover .text {
+  color: var(--ds-brand);
+}
+
+.VPNavBarMenuLink.active {
+  color: var(--ds-brand);
+}
+
+/* 当前页指示条 */
+.VPNavBarMenuLink.active::after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 14px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--ds-brand);
+}
+
+.VPNavBarMenuLink {
+  position: relative;
+}
+
+/* 下拉面板 */
+.VPNavBarMenuGroup .VPMenu {
+  min-width: 320px;
+  padding: 12px;
+  border: var(--ds-stroke) solid var(--ds-border);
+  border-radius: var(--ds-radius-lg);
+  background: var(--ds-surface);
+  box-shadow: var(--ds-shadow-2);
+}
+
+.VPMenuLink {
+  border-radius: var(--ds-radius);
+}
+
+.VPMenuLink .link {
+  padding: 10px 12px;
+  border-radius: var(--ds-radius);
+}
+
+.VPMenuLink .link:hover {
+  background: var(--ds-surface-2);
+}
+
+.VPMenuLink .link:hover .text {
+  color: var(--ds-brand);
+}
+
+.VPMenuGroup .title {
+  padding: 8px 12px 4px;
+  font-size: var(--ds-fs-caption);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ds-text-3);
+}
+
+/* 导航右侧图标 */
+.VPNavBarSocialLinks .VPSocialLink,
+.VPNavBarAppearance .VPSwitchAppearance,
+.VPNavBarTranslations .text,
+.VPNavBarSearch .DocSearch-Button,
+.VPNavBarSearch .VPNavBarSearchButton {
+  border-radius: var(--ds-radius-sm);
+}
+
+.VPNavBarSocialLinks .VPSocialLink:hover {
+  background: var(--ds-surface-2);
+}
+
+/* 滚动后：导航收缩并加背景模糊 */
+.VPNavBar {
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+}
+
+.VPNavBar:not(.home) .content-body,
+.VPNavBar.home.top .content-body {
+  background: transparent;
+}
+
+/* ── 本地搜索 ──────────────────────────────────────────────────────────── */
+
+.VPLocalSearchBox .shell {
+  border: var(--ds-stroke) solid var(--ds-border);
+  border-radius: var(--ds-radius-lg);
+  background: var(--ds-surface);
+  box-shadow: var(--ds-shadow-3);
+}
+
+.VPLocalSearchBox .search-bar {
+  border-bottom: var(--ds-stroke) solid var(--ds-border);
+}
+
+.VPLocalSearchBox .result {
+  border-radius: var(--ds-radius);
+}
+
+.VPLocalSearchBox .result.selected {
+  background: var(--ds-brand-soft);
+}
+
+.VPLocalSearchBox mark {
+  background: var(--ds-brand-soft);
+  color: var(--ds-brand);
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+/* ── 侧栏 ──────────────────────────────────────────────────────────────── */
+
+.VPSidebar {
+  border-right: var(--ds-stroke) solid var(--ds-border);
+  background: var(--ds-bg);
+}
+
+.VPSidebarItem.level-0 {
+  padding-bottom: 4px;
+}
+
+.VPSidebarItem.level-0 > .item > .text {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ds-text-2);
+}
+
+.VPSidebarItem.level-1 > .item,
+.VPSidebarItem.level-2 > .item {
+  border-radius: var(--ds-radius-sm);
+  transition: background var(--ds-t-color);
+}
+
+.VPSidebarItem.level-1 > .item:hover,
+.VPSidebarItem.level-2 > .item:hover {
+  background: var(--ds-surface-2);
+}
+
+.VPSidebarItem.level-1 > .item .text,
+.VPSidebarItem.level-2 > .item .text {
+  font-size: 14px;
+  font-weight: 450;
+  line-height: 1.5;
+}
+
+.VPSidebarItem.is-active > .item {
+  background: var(--ds-brand-soft);
+  position: relative;
+}
+
+.VPSidebarItem.is-active > .item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  border-radius: 1px;
+  background: var(--ds-brand);
+}
+
+.VPSidebarItem.is-active > .item .text {
+  font-weight: 500;
+  color: var(--ds-brand);
+}
+
+.VPSidebarItem .caret {
+  color: var(--ds-text-3);
+}
+
+/* ── 右侧大纲 ──────────────────────────────────────────────────────────── */
+
+.VPDocAsideOutline .outline-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ds-text-3);
+}
+
+.VPDocOutlineItem a.outline-link {
+  font-size: 13px;
+  color: var(--ds-text-2);
+  line-height: 1.6;
+  transition: color var(--ds-t-color);
+}
+
+.VPDocOutlineItem a.outline-link:hover {
+  color: var(--ds-text-1);
+}
+
+.VPDocOutlineItem a.outline-link.active {
+  color: var(--ds-brand);
+  font-weight: 500;
+}
+
+.VPDocAsideOutline .outline-marker {
+  width: 2px;
+  border-radius: 1px;
+  background: var(--ds-brand);
+  transition: top var(--ds-t-move);
+}
+
+/* ── 上一篇 / 下一篇 ───────────────────────────────────────────────────── */
+
+.VPDocFooter {
+  margin-top: var(--ds-space-7);
+}
+
+.VPDocFooter .prev-next {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--ds-space-4);
+  border-top: var(--ds-stroke) solid var(--ds-border);
+  padding-top: var(--ds-space-5);
+}
+
+.VPDocFooter .pager-link {
+  border: var(--ds-stroke) solid var(--ds-border);
+  border-radius: var(--ds-radius);
+  background: var(--ds-surface);
+  padding: 14px 18px;
+  transition: border-color var(--ds-t-color), transform var(--ds-t-move);
+}
+
+.VPDocFooter .pager-link:hover {
+  border-color: var(--ds-border-strong);
+  transform: translateY(-2px);
+}
+
+.VPDocFooter .pager-link .desc {
+  font-size: var(--ds-fs-caption);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ds-text-3);
+}
+
+.VPDocFooter .pager-link .title {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--ds-text-1);
+}
+
+.VPDocFooter .last-updated {
+  display: none;
+}
+
+/* ── 页脚 ──────────────────────────────────────────────────────────────── */
+
+.VPFooter {
+  border-top: var(--ds-stroke) solid var(--ds-border) !important;
+  background: var(--ds-bg) !important;
+  padding: 0;
+}
+
+.VPFooter .message,
+.VPFooter .copyright {
+  font-size: 12.5px;
+  color: var(--ds-text-3);
+}
+
+/* 内容区最大宽度下，页脚跟随 */
+@media (min-width: 960px) {
+  .VPFooter {
+    padding: var(--ds-space-6) var(--ds-gutter);
+  }
+}
+
+/* ── 回到顶部 ──────────────────────────────────────────────────────────── */
+
+.VPBackToTop {
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  border: var(--ds-stroke) solid var(--ds-border);
+  border-radius: 50%;
+  background: var(--ds-surface);
+  box-shadow: var(--ds-shadow-2);
+}
+
+.VPBackToTop:hover {
+  border-color: var(--ds-brand);
+}
+
+/* ── 响应式：断点行为 ──────────────────────────────────────────────────── */
+
+/* 1024–1279：三栏收窄 */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .VPDoc .content-container {
+    max-width: 100%;
+  }
+}
+
+/* 768–900：桌面导航在平板竖屏下放不下（英文站名 + Compare/Reference/Roadmap
+   等较长条目 + 最小 175px 的搜索框，合计约 830px > 736px 可用宽度）。
+   让站点名只保留 logo 标记，把空间让给导航项。 */
+@media (max-width: 900px) {
+  .VPNavBarTitle .title > span {
+    display: none;
+  }
+
+  .VPNavBarTitle .title {
+    gap: 0;
+  }
+}
+
+/* 移动端 <768：正文全宽、内距收紧 */
+@media (max-width: 767px) {
+  :root {
+    --ds-section-y: var(--ds-space-7);
+    --ds-gutter: 20px;
+  }
+
+  .vp-doc h1 {
+    font-size: 28px;
+  }
+
+  .vp-doc h2 {
+    font-size: 21px;
+  }
+
+  .vp-doc table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .VPDocFooter .prev-next {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 强制提升对比度：正文次要色在亮底不再低于 4.5:1 */
+@media (prefers-contrast: more) {
+  :root {
+    --ds-text-2: #52575f;
+    --ds-text-3: #6b7078;
+  }
+}
