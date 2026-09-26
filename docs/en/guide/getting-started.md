@@ -44,8 +44,8 @@ mvn -q clean test-compile
 <pre class="ds-tree"><span class="root">mini-spring/</span>
 <span class="conn">├─</span> mini-spring-original/     29-class minimal version (annotation scanning)
 <span class="conn">├─</span> mini-spring-iteration/    98 classes, progressive, source-code-style
-<span class="conn">├─</span> docs/                     VitePress documentation site (this site)
-<span class="conn">└─</span> img/                      Architecture diagrams (SVG + PNG)
+<span class="conn">├─</span> design/                   Redesign spec and wireframes
+<span class="conn">└─</span> docs/                     VitePress documentation site (this site, with diagrams)
 </pre>
 
 What each package is responsible for is covered in [Project Structure](/en/guide/start/structure).

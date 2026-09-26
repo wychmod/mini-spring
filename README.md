@@ -1,6 +1,7 @@
 <div align="center">
 
-![mini-spring](img/logo.png)
+<!-- 图片统一放在 docs/public/images/（文档站的 publicDir），README 复用同一份以免双份 -->
+![mini-spring](docs/public/images/logo.png)
 
 # mini-spring
 
@@ -28,10 +29,10 @@
 <br/>
 <div align="center">
     <a href="https://book.douban.com/subject/34466260/" target="_blank">
-    <img src="https://github.com/wychmod/mini-spring/blob/main/img/book1.png?raw=true" width="250px">
+    <img src="https://github.com/wychmod/mini-spring/blob/main/docs/public/images/book1.png?raw=true" width="250px">
     </a>
     <a href="https://book.douban.com/subject/36139432/" target="_blank">
-    <img src="https://github.com/wychmod/mini-spring/blob/main/img/book2.png?raw=true" width="250px">
+    <img src="https://github.com/wychmod/mini-spring/blob/main/docs/public/images/book2.png?raw=true" width="250px">
     </a>
 </div>
 <br/>
@@ -39,16 +40,16 @@
 > 代码均有注释，可以参照下面的图片和对应代码进行spring的理解与学习
 
 ## Bean的生命周期
-![Bean生命周期](img/bean-lifecycle.png)
+![Bean生命周期](docs/public/images/bean-lifecycle.png)
 
 ## Spring类加载全流程
-![Spring类加载全流程](img/class-loading-flow.png)
+![Spring类加载全流程](docs/public/images/class-loading-flow.png)
 
 ## Spring IoC的类图
-![Spring IoC类图](img/ioc-class-diagram.png)
+![Spring IoC类图](docs/public/images/ioc-class-diagram.png)
 
 ## Spring AOP的类图
-![Spring AOP类图](img/aop-class-diagram.png)
+![Spring AOP类图](docs/public/images/aop-class-diagram.png)
 
 ## Spring 三级缓存解决循环依赖
-![Spring三级缓存解决循环依赖](img/three-level-cache.png)
+![Spring三级缓存解决循环依赖](docs/public/images/three-level-cache.png)

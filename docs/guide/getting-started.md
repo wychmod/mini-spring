@@ -43,8 +43,8 @@ mvn -q clean test-compile
 <pre class="ds-tree"><span class="root">mini-spring/</span>
 <span class="conn">├─</span> mini-spring-original/     29 个类的极简版（注解扫描）
 <span class="conn">├─</span> mini-spring-iteration/    98 个类，源码风格的渐进式实现
-<span class="conn">├─</span> docs/                     VitePress 文档站（本站）
-<span class="conn">└─</span> img/                      架构图（SVG + PNG）
+<span class="conn">├─</span> design/                   重构方案与线框规范
+<span class="conn">└─</span> docs/                     VitePress 文档站（本站，含架构图资源）
 </pre>
 
 每个包负责什么，见[目录结构导览](/guide/start/structure)。
